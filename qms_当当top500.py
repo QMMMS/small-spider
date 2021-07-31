@@ -174,7 +174,7 @@ def get_pic():
 
 def menu():
     print("*" * 50)
-    print("欢迎使用当当图书top250爬取程序！")
+    print("欢迎使用当当图书top500爬取程序！")
     print("更多有趣小程序，请关注https://github.com/QMMMS")
     print()
     print("1.写入txt")

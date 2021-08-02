@@ -66,40 +66,6 @@ def get_data_xls():
     return data_list
 
 
-# def main():
-#     root = "E:/data/"
-#     if not os.path.exists(root):
-#         os.mkdir(root)
-#     path1 = "E:/data/当当top500.txt"
-#     if not os.path.exists(path1):
-#         print("正在写入txt!")
-#         for i in range(1, 26):
-#             basic_url = "http://bang.dangdang.com/books/fivestars/01.00.00.00.00.00-recent30-0-0-1-"
-#             url = basic_url + str(i)
-#             html = request_url(url)
-#             targets = get_data_txt(html)
-#             for target in targets:
-#                 write_txt(target)
-#         print("txt写入完毕！")
-#     else:
-#         print("txt文件已存在！")
-#     print("请查看E:/data/当当top500.txt")
-#
-#     path2 = "E:/data/当当top250.xls"
-#     if not os.path.exists(path2):
-#         print("正在写入xls!")
-#         for i in range(1, 26):
-#             basic_url = "http://bang.dangdang.com/books/fivestars/01.00.00.00.00.00-recent30-0-0-1-"
-#             url = basic_url + str(i)
-#             html = request_url(url)
-#             targets2 = get_data_xls()
-#             for target2 in targets2:
-#                 write_xls(target2)
-#         print("xls写入完毕！")
-#     else:
-#         print("xls文件已存在！")
-
-
 def write_txt(item):
     print('(txt)写入第' + str(item["number"]) + '条！')
     path = "E:/data/当当top500.txt"

@@ -53,7 +53,7 @@
 爬取相关信息（标题、链接……）  
 xls文件保存在本地  
 **技术点：**  
-1. selenium + chrome （headlss）/PhantomJS  
+1. selenium + chrome （headless）/PhantomJS  
 2. CSS_SELECTOR  
 3. XPATH  
 4. BeautifulSoup

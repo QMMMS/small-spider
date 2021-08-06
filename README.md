@@ -64,7 +64,7 @@ xls文件保存在本地
 **技术点：**  
 1. selenium + chrome （headless）/PhantomJS  
 2. ProxyPool + redis  
-（https://github.com/Python3WebSpider/ProxyPool）  
+（https://github.com/Python3WebSpider/ProxyPool ）  
 3. XPATH  
 4. BeautifulSoup  
 5. 伪装请求头  

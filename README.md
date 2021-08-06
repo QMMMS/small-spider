@@ -58,5 +58,19 @@ xls文件保存在本地
 3. XPATH  
 4. BeautifulSoup
 
+----------
+### 秋名山一号 ###  
+**功能略**  
+**技术点：**  
+1. selenium + chrome （headless）/PhantomJS  
+2. ProxyPool + redis  
+（https://github.com/Python3WebSpider/ProxyPool）  
+3. XPATH  
+4. BeautifulSoup  
+5. 伪装请求头  
+6. 线程池  
+7. requests
+
+
 
 

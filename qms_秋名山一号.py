@@ -8,6 +8,8 @@ import requests
 import os
 from concurrent.futures import ThreadPoolExecutor
 import concurrent
+import datetime
+import time
 
 # options = webdriver.ChromeOptions()
 # options.add_argument("--proxy-server=***************")
@@ -22,6 +24,7 @@ indexes = ["/oumeisetu/",
            "/katongdongman/",
            "/shaofushunv/"]
 proxy_pool_url = 'http://127.0.0.1:5555/random'
+basic_page_number = 50
 
 
 def make_basic_dir():
@@ -57,9 +60,9 @@ def get_html_by_requests(url, proxy0):
                           "Chrome/92.0.4515.107 Safari/537.36 "
         }
         proxies = {'http': 'http://' + proxy0}
-        return requests.get(url, proxies=proxies, headers=headers)
+        return requests.get(url, proxies=proxies, headers=headers, timeout=1)
     except TimeoutException:
-        get_html_by_requests(url, proxy0)
+        return None
 
 
 def get_html(url):
@@ -113,18 +116,19 @@ def download_pic(src, name, proxy0):
     path = root + src.split("/")[-1]
     if not os.path.exists(root):
         os.mkdir(root)
-    try:
+    read = get_html_by_requests(src, proxy0)
+    print(datetime.datetime.now(), end=":")
+    if read is not None:
         if not os.path.exists(path):
-            read = get_html_by_requests(src, proxy0)
             with open(path, "wb") as f:
                 f.write(read.content)
                 f.close()
                 print(path + "图片保存成功!")
         else:
             print(path + "图片已存在!")
-    except TimeoutException:
-        print("超时了...再试一次...")
-        download_pic(src, name, proxy)
+    else:
+        print(path + "好像无法加载，自动跳过....")
+        pass
 
 
 if __name__ == '__main__':
@@ -140,7 +144,10 @@ if __name__ == '__main__':
     basic_url = get_basic_url(front_url)
     for index in indexes:
         tool_html = get_html(basic_url + index)
-        page_number = get_page_number(tool_html)
+        if index == "/shaofushunv/":
+            page_number = get_page_number(tool_html)
+        else:
+            page_number = basic_page_number
 
         for i in range(1, int(page_number) + 1):
             origin_html = get_html(basic_url + index + "list_" + str(i) + ".html")
@@ -150,6 +157,7 @@ if __name__ == '__main__':
                 targets = get_pic_url_and_name(img_url)
                 png_urls = targets[0]
                 png_name = targets[1]
+                time.sleep(1)
                 proxy = get_random_proxy(proxy_pool_url)
                 with concurrent.futures.ProcessPoolExecutor(max_workers=5) as executor:
                     for png_url in png_urls:

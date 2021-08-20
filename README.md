@@ -60,7 +60,9 @@ xls文件保存在本地
 
 ----------
 ### 秋名山一号 ###  
-**功能略**  
+**功能：**  
+预计运行时间：48小时  
+预计下载图片：400,000+张  
 **技术点：**  
 1. selenium + chrome （headless）/PhantomJS  
 2. ProxyPool + redis  
